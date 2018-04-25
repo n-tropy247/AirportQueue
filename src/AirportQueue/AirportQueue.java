@@ -17,18 +17,16 @@
 package AirportQueue;
 
 import java.awt.BorderLayout;
-<<<<<<< HEAD
-import java.awt.FlowLayout;
-=======
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
->>>>>>> 81a6e3160a80a7346850257f32de38eebf048250
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -49,7 +47,7 @@ import java.util.LinkedList;
  * @author castellir
  * @ver 1.0
  */
-public class AirportQueue extends JPanel {
+public class AirportQueue extends JFrame {
 
     private static final LinkedList INCOMING_FLIGHTS = new LinkedList();
 
@@ -69,12 +67,23 @@ public class AirportQueue extends JPanel {
 
     private static String input;
 
+    private AirportQueue() {
+        init();
+    }
+
     /**
      * Creates JFrame
      *
      * @param args
      */
     public static void main(String args[]) {
+        EventQueue.invokeLater(() -> {
+            jfrm = new AirportQueue();
+            jfrm.setVisible(true);
+        });
+    }
+
+    private void init() {
         try {
             for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -87,21 +96,9 @@ public class AirportQueue extends JPanel {
         }
 
         option = 0;
-
-        jfrm = new JFrame("Airport Queue");
-        jfrm.setLayout(new BorderLayout()); //sets layout based on borders
-<<<<<<< HEAD
-        jfrm.setSize(700, 600);
-=======
-        jfrm.setSize(700, 600); //sets size
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //gets screen dimensions
-
-        double screenWidth = screenSize.getWidth(); //width of screen
-        double screenHeight = screenSize.getHeight(); //height of screen
-
-        jfrm.setLocation((int) screenWidth / 2 - 250, (int) screenHeight / 2 - 210); //sets location of chat to center
->>>>>>> 81a6e3160a80a7346850257f32de38eebf048250
+        setTitle("Airport Queue");
+        setLayout(new BorderLayout()); //sets layout based on borders
+        setSize(700, 600); //sets size
 
         jtaDisplay = new JTextArea(20, 40); //size of display
         jtaDisplay.setEditable(false); //display not editable
@@ -118,7 +115,7 @@ public class AirportQueue extends JPanel {
         KeyListener key = new handler(); //adds handler for 'enter' key
 
         jtfInput.addKeyListener(key); //adds keylistener for 'enter'
-        jfrm.add(jscrlp, BorderLayout.PAGE_START); //adds scrollable display to main frame
+        add(jscrlp, BorderLayout.PAGE_START); //adds scrollable display to main frame
 
         sendOverride = new ActionEvent(jbtnSend, 1001, "Send"); //allows key to trigger same method as button
 
@@ -128,18 +125,12 @@ public class AirportQueue extends JPanel {
         p1.add(jtfInput, BorderLayout.LINE_END); //adds input to panel
         p1.add(jbtnSend, BorderLayout.LINE_END); //adds button to panel
 
-        jfrm.add(p1, BorderLayout.PAGE_END); //add button/input to main frame
-<<<<<<< HEAD
-        
-        
-        jfrm.setLocationRelativeTo(null);
-=======
->>>>>>> 81a6e3160a80a7346850257f32de38eebf048250
+        add(p1, BorderLayout.PAGE_END); //add button/input to main frame
 
-        jfrm.setVisible(true); //makes frame visible
+        setLocationRelativeTo(null);
 
-        jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //kills application on close
-        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //kills application on close
+
         jtaDisplay.setText(jtaDisplay.getText() + "\n1. Add flight\n2. Remove first flight in list\n3. Check for flight\n4. Size of queue\n5. First in queue\n6. Last in queue\nRemove last in queue\n8. Check for duplicates\n9. Remove duplicates\n10. Remove first occurance of flight number\n11. Remove last occurance of flight number\n12. Add item to front of queue\n13. Print queue\nEnter Selection: ");
     }
 
@@ -218,7 +209,7 @@ public class AirportQueue extends JPanel {
                                         }
                                         c--;
                                     }
-                                    jtaDisplay.setText(jtaDisplay.getText() + "\nDone!\n1. Add flight\n2. Remove first flight in list\n3. Check for flight\n4. Size of queue\n5. First in queue\n6. Last in queue\nRemove last in queue\n8. Check for duplicates\n9. Remove duplicates\n10. Remove first occurance of flight number\n11. Remove last occurance of flight number\n12. Add item to front of queue\n13. Print queue\nEnter Selection: ");
+                                    jtaDisplay.setText(jtaDisplay.getText() + "\n1. Add flight\n2. Remove first flight in list\n3. Check for flight\n4. Size of queue\n5. First in queue\n6. Last in queue\nRemove last in queue\n8. Check for duplicates\n9. Remove duplicates\n10. Remove first occurance of flight number\n11. Remove last occurance of flight number\n12. Add item to front of queue\n13. Print queue\nEnter Selection: ");
                                     break;
                                 case 10:
                                     jtaDisplay.setText(jtaDisplay.getText() + "\nWhat flight do you want to remove?: ");
@@ -235,9 +226,9 @@ public class AirportQueue extends JPanel {
                                 case 13:
                                     jtaDisplay.setText(jtaDisplay.getText() + "\nQueue: ");
                                     for (int j = INCOMING_FLIGHTS.size(); j > 0; j--) {
-                                        jtaDisplay.setText(jtaDisplay.getText() + "\n" + (int) INCOMING_FLIGHTS.get(j));
+                                        jtaDisplay.setText(jtaDisplay.getText() + "\n" + INCOMING_FLIGHTS.get(j));
                                     }
-                                    jtaDisplay.setText(jtaDisplay.getText() + "\nDone!\n1. Add flight\n2. Remove first flight in list\n3. Check for flight\n4. Size of queue\n5. First in queue\n6. Last in queue\nRemove last in queue\n8. Check for duplicates\n9. Remove duplicates\n10. Remove first occurance of flight number\n11. Remove last occurance of flight number\n12. Add item to front of queue\n13. Print queue\nEnter Selection: ");
+                                    jtaDisplay.setText(jtaDisplay.getText() + "\n1. Add flight\n2. Remove first flight in list\n3. Check for flight\n4. Size of queue\n5. First in queue\n6. Last in queue\nRemove last in queue\n8. Check for duplicates\n9. Remove duplicates\n10. Remove first occurance of flight number\n11. Remove last occurance of flight number\n12. Add item to front of queue\n13. Print queue\nEnter Selection: ");
                                     break;
                             }
                         }
@@ -315,8 +306,4 @@ public class AirportQueue extends JPanel {
         public void keyReleased(KeyEvent ke) {
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 81a6e3160a80a7346850257f32de38eebf048250

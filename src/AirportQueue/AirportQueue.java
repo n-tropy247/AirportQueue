@@ -17,7 +17,13 @@
 package AirportQueue;
 
 import java.awt.BorderLayout;
+<<<<<<< HEAD
 import java.awt.FlowLayout;
+=======
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Toolkit;
+>>>>>>> 81a6e3160a80a7346850257f32de38eebf048250
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -84,7 +90,18 @@ public class AirportQueue extends JPanel {
 
         jfrm = new JFrame("Airport Queue");
         jfrm.setLayout(new BorderLayout()); //sets layout based on borders
+<<<<<<< HEAD
         jfrm.setSize(700, 600);
+=======
+        jfrm.setSize(700, 600); //sets size
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //gets screen dimensions
+
+        double screenWidth = screenSize.getWidth(); //width of screen
+        double screenHeight = screenSize.getHeight(); //height of screen
+
+        jfrm.setLocation((int) screenWidth / 2 - 250, (int) screenHeight / 2 - 210); //sets location of chat to center
+>>>>>>> 81a6e3160a80a7346850257f32de38eebf048250
 
         jtaDisplay = new JTextArea(20, 40); //size of display
         jtaDisplay.setEditable(false); //display not editable
@@ -112,9 +129,12 @@ public class AirportQueue extends JPanel {
         p1.add(jbtnSend, BorderLayout.LINE_END); //adds button to panel
 
         jfrm.add(p1, BorderLayout.PAGE_END); //add button/input to main frame
+<<<<<<< HEAD
         
         
         jfrm.setLocationRelativeTo(null);
+=======
+>>>>>>> 81a6e3160a80a7346850257f32de38eebf048250
 
         jfrm.setVisible(true); //makes frame visible
 
@@ -295,4 +315,8 @@ public class AirportQueue extends JPanel {
         public void keyReleased(KeyEvent ke) {
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 81a6e3160a80a7346850257f32de38eebf048250
